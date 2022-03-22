@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel: MainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        val adapter = EqAdapter()
+        val adapter = EqAdapter(this)
         binding.eqRecycler.adapter = adapter
 
         viewModel.eqList.observe(this, Observer{
