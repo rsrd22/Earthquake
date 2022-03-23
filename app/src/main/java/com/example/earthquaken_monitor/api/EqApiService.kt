@@ -1,4 +1,4 @@
-package com.example.earthquaken_monitor
+package com.example.earthquaken_monitor.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -6,7 +6,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 
 interface EqApiService{
-    @GET("all_week.geojson")
+    @GET("all_day.geojson")
     suspend fun getLastHourEarthquakes():EqJsonResponse
 }
 

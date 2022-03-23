@@ -1,19 +1,20 @@
-package com.example.earthquaken_monitor
+package com.example.earthquaken_monitor.main
 
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.earthquaken_monitor.Earthquake
+import com.example.earthquaken_monitor.R
 import com.example.earthquaken_monitor.databinding.EqListItemBinding
 
 private val TAG = EqAdapter::class.java.simpleName
-class EqAdapter(private val context: Context) : ListAdapter<Earthquake, EqAdapter.EqViewHolder>(DiffCallback){
+class EqAdapter(private val context: Context) : ListAdapter<Earthquake, EqAdapter.EqViewHolder>(
+    DiffCallback
+){
 
     companion object DiffCallback: DiffUtil.ItemCallback<Earthquake>(){
         override fun areItemsTheSame(oldItem: Earthquake, newItem: Earthquake): Boolean {
@@ -28,14 +29,14 @@ class EqAdapter(private val context: Context) : ListAdapter<Earthquake, EqAdapte
 
     lateinit var onItemClickListener: (Earthquake) -> Unit
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EqAdapter.EqViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EqViewHolder {
         val binding = EqListItemBinding.inflate(LayoutInflater.from(parent.context))
 //        val view = LayoutInflater.from(parent.context).inflate(R.layout.eq_list_item, parent, false)
 
         return EqViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: EqAdapter.EqViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EqViewHolder, position: Int) {
         val earthquake = getItem(position)
 //        holder.magnitudeText.text = earthquake.magnitude.toString()
 //        holder.placeText.text = earthquake.place

@@ -1,16 +1,24 @@
-package com.example.earthquaken_monitor
+package com.example.earthquaken_monitor.main
 
+import androidx.lifecycle.LiveData
+import com.example.earthquaken_monitor.Earthquake
+import com.example.earthquaken_monitor.api.EqJsonResponse
+import com.example.earthquaken_monitor.api.service
+import com.example.earthquaken_monitor.database.EqDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MainRepository {
+class MainRepository(private val database: EqDatabase) {
 
-     suspend fun fetchEarthquakes(): MutableList<Earthquake> {
+    val eqList: LiveData<MutableList<Earthquake>> = database.eqDao.getEarthquakes()
+
+     suspend fun fetchEarthquakes() {
         return withContext(Dispatchers.IO) {
             val eqJsonResponse =service.getLastHourEarthquakes()
             val eqList = ParseEqResult(eqJsonResponse)
 
-            eqList
+            database.eqDao.insertAll(eqList)
+
         }
     }
 
