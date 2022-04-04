@@ -6,7 +6,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 
 interface EqApiService{
-    @GET("all_day.geojson")
+    @GET("all_hour.geojson")
     suspend fun getLastHourEarthquakes():EqJsonResponse
 }
 

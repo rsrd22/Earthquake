@@ -27,7 +27,7 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 _status.value = ApiResponseStatus.LOADING
-                repository.fetchEarthquakes()
+                 repository.fetchEarthquakes()
                 _status.value = ApiResponseStatus.DONE
             }catch (e: UnknownHostException){
                 _status.value = ApiResponseStatus.ERROR
